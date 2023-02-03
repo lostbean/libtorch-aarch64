@@ -35,7 +35,7 @@ jobs:
               --platform=linux/arm64 \
               --progress=plain \
               --output type=local,dest=./wheels \
-              --file Dockerfile.jetson .
+              --file Dockerfile .
 
         - name: Upload Artifacts
           uses: actions/upload-artifact@v2
