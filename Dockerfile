@@ -84,9 +84,11 @@ RUN cd /pytorch \
     && python setup.py build \
     && cd ..
 
+RUN tar -cvf torch.tar /pytorch
+
 # ##################################################################################
 # Prepare Artifact
 # ##################################################################################
-#FROM scratch as artifact
-#COPY --from=builder /pytorch/build/* /
-CMD ["/bin/bash"]
+FROM scratch as artifact
+COPY --from=builder /torch.tar /
+#CMD ["/bin/bash"]

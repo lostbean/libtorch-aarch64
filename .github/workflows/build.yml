@@ -34,15 +34,19 @@ jobs:
             docker buildx build \
               --platform=linux/arm64 \
               --progress=plain \
-              --output type=local,dest=./wheels \
+              --output type=local,dest=. \
               --file Dockerfile .
 
-        - name: Upload Artifacts
-          uses: actions/upload-artifact@v2
-          with:
-            name: wheels
-            path: |
-              wheels/*.whl
+        - name: Check
+          run: |
+            ls -la
+
+        # - name: Upload Artifacts
+        #   uses: actions/upload-artifact@v2
+        #   with:
+        #     name: build
+        #     path: |
+        #       build/*
 
         # This ugly bit is necessary if you don't want your cache to grow forever
         # till it hits GitHub's limit of 5GB.
