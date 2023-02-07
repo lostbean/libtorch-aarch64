@@ -1,13 +1,14 @@
 jobs:
   my-job:
     machine:
-      image: ubuntu-2004:202101-01
+      image: cimg/base:stable
       docker_layer_caching: true
     resource_class: arm.medium
     steps:
-      - checkout
       - setup_remote_docker:
           docker_layer_caching: true
+          version: 20.10.11
+      - checkout
       - run: docker buildx build \
           --platform=linux/arm64 \
           --progress=plain \
