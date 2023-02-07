@@ -12,11 +12,10 @@ jobs:
       docker_layer_caching: true
     resource_class: arm.medium
     steps:
-      - setup_remote_docker:
-          docker_layer_caching: true
-          version: 20.10.11
       - checkout
-      - run: docker buildx build \
+      - run: |
+          export DOCKER_CLI_EXPERIMENTAL=enabled
+          docker buildx build \
           --platform=linux/arm64 \
           --progress=plain \
           --output type=local,dest=. \
