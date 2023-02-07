@@ -1,0 +1,19 @@
+jobs:
+  my-job:
+    machine:
+      image: ubuntu-2004:202101-01
+      docker_layer_caching: true
+    resource_class: arm.medium
+    steps:
+      - checkout
+      - setup_remote_docker:
+          docker_layer_caching: true
+      - run: |
+        docker buildx build \
+          --platform=linux/arm64 \
+          --progress=plain \
+          --output type=local,dest=. \
+          --file Dockerfile .
+      - store_artifacts:
+          path: /torch.tar
+          destination: torch.tar
