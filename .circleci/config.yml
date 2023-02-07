@@ -8,7 +8,7 @@ workflows:
 jobs:
   torch-arm64:
     machine:
-      image: cimg/base:stable
+      image: ubuntu-2004:202101-01
     resource_class: arm.medium
     steps:
       - checkout
